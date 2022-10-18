@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'com.fireinrain.xjavbus'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+java {
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+}
+
+dependencies {
+    // http
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    // parse html
+    implementation("org.jsoup:jsoup:1.15.3")
+    // sqlite3 for storage
+    implementation("org.xerial:sqlite-jdbc:3.39.3.0")
+    // orm
+    // implementation("com.j256:ormlite:3.0")
+    // logback
+    implementation('ch.qos.logback:logback-classic:1.4.3')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+jar {
+    duplicatesStrategy = 'include'
+    manifest {
+        attributes "Main-Class": "com.fireinrain.xjavbus.MainApp"
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.SF'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+}
+
+test {
+    useJUnitPlatform()
+}
