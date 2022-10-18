@@ -20,7 +20,7 @@ import java.util.concurrent.ForkJoinPool;
  */
 
 public class XjavbusConfig {
-    public static final String javbusBaseUrl = "https://www.v2ph.com";
+    public static final String javbusBaseUrl = "https://www.javbus.com/";
 
     public static String dataFolder = "download-data";
 

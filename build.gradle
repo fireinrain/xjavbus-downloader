@@ -23,7 +23,10 @@ dependencies {
     // orm
     // implementation("com.j256:ormlite:3.0")
     // logback
-    implementation('ch.qos.logback:logback-classic:1.4.3')
+    implementation("ch.qos.logback:logback-classic:1.4.3")
+    // https://mvnrepository.com/artifact/com.lmax/disruptor
+    implementation('com.lmax:disruptor:3.4.4')
+
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
