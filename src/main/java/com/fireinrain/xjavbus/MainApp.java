@@ -42,8 +42,8 @@ public class MainApp {
         // 开启所有消费者监听数据
         disruptor.start();
 
-        IntStream.of(10).mapToObj(e -> new Thread(() -> {
-            for (int i = 0; i < 10000; i++) {
+        IntStream.of(1).mapToObj(e -> new Thread(() -> {
+            for (int i = 0; i < 1; i++) {
                 final int index = i;
                 ringBuffer.publishEvent((event, sequence) -> {
                     event.getStarInfoEntity().setStarName(UUID.randomUUID().toString());
