@@ -1,5 +1,8 @@
 package com.fireinrain.xjavbus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @Description: 采集javbus数据
  * @Author : fireinrain
@@ -10,7 +13,10 @@ package com.fireinrain.xjavbus;
  */
 
 public class MainApp {
+    public static final Logger logger = LoggerFactory.getLogger(MainApp.class);
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        logger.info("hello,xjavbus");
+
     }
 }
