@@ -1,6 +1,6 @@
 package com.fireinrain.xjavbus.spider;
 
-import com.fireinrain.xjavbus.spider.config.XjavbusConfig;
+import com.fireinrain.xjavbus.config.XjavbusConfig;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

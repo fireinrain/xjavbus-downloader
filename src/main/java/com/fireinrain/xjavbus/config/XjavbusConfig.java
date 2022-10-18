@@ -1,4 +1,4 @@
-package com.fireinrain.xjavbus.spider.config;
+package com.fireinrain.xjavbus.config;
 
 import java.io.IOException;
 import java.io.InputStream;
