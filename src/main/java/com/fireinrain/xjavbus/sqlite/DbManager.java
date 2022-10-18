@@ -1,6 +1,6 @@
 package com.fireinrain.xjavbus.sqlite;
 
-import com.fireinrain.v2ph.config.V2phConfig;
+import com.fireinrain.xjavbus.config.XjavbusConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,37 +25,58 @@ import java.util.Objects;
 public class DbManager {
     private static final Logger logger = LoggerFactory.getLogger(DbManager.class);
 
-    private static final String dbFileNamePath = V2phConfig.dbFilePath;
+    private static final String itemDbFilePath = XjavbusConfig.itemDbFilePath;
 
-    private static final String dbUrl = "jdbc:sqlite:" + dbFileNamePath;
+    private static final String resourceDbFilePath = XjavbusConfig.resourceDbFilePath;
 
-    private static Connection connection;
+    private static final String itemDbUrl = "jdbc:sqlite:" + itemDbFilePath;
+
+    private static final String resourceDbUrl = "jdbc:sqlite:" + resourceDbFilePath;
+
+
+    private static Connection itemDbconnection;
+
+    private static Connection resourceDbConnection;
 
 
     static {
         checkIfHasDbFile();
         try {
-            connection = DriverManager.getConnection(dbUrl);
+            itemDbconnection = DriverManager.getConnection(itemDbUrl);
+            resourceDbConnection = DriverManager.getConnection(resourceDbUrl);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static void checkIfHasDbFile() {
-        Path path = Paths.get(dbFileNamePath);
+        Path path = Paths.get(itemDbFilePath);
         boolean exists = Files.exists(path);
         if (!exists) {
-            logger.warn("v2ph数据库文件: " + dbFileNamePath + "不存在!!!");
+            logger.warn("javbus.db数据库文件: " + itemDbFilePath + "不存在!!!");
             logger.info("自动创建......");
-            createDatabase(dbFileNamePath);
+            createDatabase(itemDbFilePath);
         } else {
-            logger.info("数据库文件已存在......");
+            logger.info(itemDbFilePath + "数据库文件已存在......");
+        }
+        Path path2 = Paths.get(resourceDbFilePath);
+        boolean exists2 = Files.exists(path2);
+        if (!exists2) {
+            logger.warn("javbus-resource.db数据库文件: " + resourceDbFilePath + "不存在!!!");
+            logger.info("自动创建......");
+            createDatabase(resourceDbFilePath);
+        } else {
+            logger.info(resourceDbFilePath + "数据库文件已存在......");
         }
 
     }
 
-    public static Connection getConnection() {
-        return connection;
+    public static Connection getItemDbConnection() {
+        return itemDbconnection;
+    }
+
+    public static Connection getResourceDbConnection() {
+        return resourceDbConnection;
     }
 
 

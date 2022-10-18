@@ -1,5 +1,6 @@
 package com.fireinrain.xjavbus.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -71,12 +72,13 @@ public class XjavbusConfig {
 
         String itemDbFile = XjavbusConfig.getConfig("ItemDbFilePath");
         if (null != itemDbFile && itemDbFile.length() > 0) {
-            itemDbFilePath = itemDbFile;
+            itemDbFilePath = dataFolder + File.separator + itemDbFile;
+
         }
 
         String resourceDbFile = XjavbusConfig.getConfig("ResourceDbFilePath");
         if (null != resourceDbFile && resourceDbFile.length() > 0) {
-            resourceDbFilePath = resourceDbFile;
+            resourceDbFilePath = dataFolder + File.separator + resourceDbFile;
         }
 
         // 生成data目录
