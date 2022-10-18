@@ -47,7 +47,10 @@ public class AbstractHttpSpider {
         } catch (IOException e) {
             // throw new RuntimeException(e);
             StringBuilder info = new StringBuilder();
-            info.append("can't access site: ").append(checkUrl).append(" use proxy at ").append(XjavbusConfig.getConfig("ProxyHost")).append(":").append(XjavbusConfig.getConfig("ProxyPort"));
+            info.append("can't access site: ")
+                    .append(checkUrl).append(" use proxy at ")
+                    .append(XjavbusConfig.getConfig("ProxyHost"))
+                    .append(":").append(XjavbusConfig.getConfig("ProxyPort"));
             logger.info(info.toString());
             OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(60 * 8, TimeUnit.SECONDS).retryOnConnectionFailure(false).connectTimeout(60 * 8, TimeUnit.SECONDS).connectionPool(new ConnectionPool(10, 10, TimeUnit.SECONDS)).proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(XjavbusConfig.getConfig("ProxyHost"), Integer.parseInt(XjavbusConfig.getConfig("ProxyPort"))))).build();
             try (Response response = httpClient.newCall(url).execute();) {
